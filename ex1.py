@@ -20,8 +20,11 @@ def main():
     parser.add_argument("--model_path", type=str, default="./final-mrpc-model2")
     args = parser.parse_args()
 
+    '''    
+    In order to use wandb:
     run_name = f"epoch_num_{args.num_train_epochs}_lr_{args.lr}_batch_size_{args.batch_size}"
-    wandb.init(project="mrpc-paraphrase-detection", name=run_name)
+    #wandb.init(project="mrpc-paraphrase-detection", name=run_name)
+    '''
 
     dataset = load_dataset('glue', 'mrpc')
     model_name = "bert-base-uncased"
@@ -65,7 +68,8 @@ def main():
             learning_rate=args.lr,
             weight_decay=0.01,
             warmup_ratio=0.06,
-            report_to=["wandb"],
+            ##report_to=["wandb"],
+            report_to=[],
             load_best_model_at_end=False,
         )
 
